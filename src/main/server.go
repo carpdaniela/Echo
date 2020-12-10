@@ -1,43 +1,44 @@
 package main
 
 import (
+	myTodos "./db"
 	"encoding/json"
-	"net/http"
-
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"gorm.io/gorm"
 )
 
 func main() {
+
+	db := myTodos.ConnectToDB();
+	handleRequest(db)
+
+}
+
+func handleRequest(db *gorm.DB) {
 	e := echo.New()
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
+	e.Use(CORSMiddlewareWrapper)
 
-	e.GET("/todo", dana)
-	e.POST("/todo", func(c echo.Context) error {
-		u := User{
-			Name:  "Dana POST",
-			Email: "iulianadana97@gmail.com",
+	e.GET("/todos", myTodos.AllTodos(db))
+	e.POST("/todos/add/", myTodos.NewTodo(db))
+	e.DELETE("/todos/remove", myTodos.DeleteTodo(db))
+	e.PUT("/user/todos/update", myTodos.UpdateTodo(db))
+
+	e.Logger.Fatal(e.Start(":3000"))
+}
+
+func CORSMiddlewareWrapper(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(ctx echo.Context) error {
+		req := ctx.Request()
+		dynamicCORSConfig := middleware.CORSConfig{
+			AllowOrigins: []string{req.Header.Get("Origin")},
+			AllowHeaders: []string{"Accept", "Cache-Control", "Content-Type", "X-Requested-With"},
 		}
-		resp, _ := ToJSON(u)
-		return c.String(http.StatusOK, resp)
-	})
-	e.Logger.Fatal(e.Start(":1323"))
-}
-
-func dana(c echo.Context) error {
-	u := User{
-		Name:  "Dana",
-		Email: "iulianadana97@gmail.com",
+		CORSMiddleware := middleware.CORSWithConfig(dynamicCORSConfig)
+		CORSHandler := CORSMiddleware(next)
+		return CORSHandler(ctx)
 	}
-	resp, _ := ToJSON(u)
-	return c.String(http.StatusOK, resp)
-}
-
-type User struct {
-	Name  string `json:"name" xml:"name" form:"name" query:"name"`
-	Email string `json:"email" xml:"email" form:"email" query:"email"`
 }
 
 func ToJSON(obj interface{}) (string, error) {

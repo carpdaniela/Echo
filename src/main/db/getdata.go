@@ -60,10 +60,10 @@ func AllTodos (db *gorm.DB) func(echo.Context) error{
 
 func NewTodo(db *gorm.DB) func(echo.Context) error {
 	return func(c echo.Context) error {
-		msg := c.Param("msg")
-		fmt.Println("done param = ",c.Param("done"))
-		fmt.Println("msg param= ", c.Param("msg"))
-		done,err := strconv.ParseBool(c.Param("done"))
+		msg := c.QueryParam("msg") //c.Param("msg")
+		fmt.Println("done param = ",c.QueryParam("done"))
+		fmt.Println("msg param= ", c.QueryParam("msg"))
+		done,err := strconv.ParseBool(c.QueryParam("done"))
 
 		if err!= nil {
 			fmt.Println(err)
@@ -96,7 +96,7 @@ func NewTodo(db *gorm.DB) func(echo.Context) error {
 
 func DeleteTodo(db *gorm.DB) func(echo.Context) error {
 	return func(c echo.Context) error {
-		msg := c.Param("msg")
+		msg := c.QueryParam("msg")
 
 		msg = strings.Replace(msg, "%20", " ", -1)
 
@@ -114,7 +114,7 @@ func DeleteTodo(db *gorm.DB) func(echo.Context) error {
 
 func UpdateTodo(db *gorm.DB) func(echo.Context) error {
 	return func(c echo.Context) error {
-		msg := c.Param("msg")
+		msg := c.QueryParam("msg")
 		done, err := strconv.ParseBool(c.Param("done"))
 
 		msg = strings.Replace(msg, "%20", " ", -1)
