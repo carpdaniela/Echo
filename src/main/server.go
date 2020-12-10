@@ -22,8 +22,8 @@ func handleRequest(db *gorm.DB) {
 
 	e.GET("/todos", myTodos.AllTodos(db))
 	e.POST("/todos/add/", myTodos.NewTodo(db))
-	e.DELETE("/todos/remove", myTodos.DeleteTodo(db))
-	e.PUT("/user/todos/update", myTodos.UpdateTodo(db))
+	e.DELETE("/todos/remove/", myTodos.DeleteTodo(db))
+	e.PUT("/todos/update/", myTodos.UpdateTodo(db))
 
 	e.Logger.Fatal(e.Start(":3000"))
 }

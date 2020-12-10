@@ -6,12 +6,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75090d52-e1db-4de1-965d-ba1b0193cfd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/.idea/add.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webApp/add/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/db/getdata.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/db/getdata.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webApp/add" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webApp/add" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webApp/add/controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webApp/add/controller.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
